@@ -51,3 +51,27 @@ def get_balance_from_wallet_ETH(request):
         "response": balance_eth,
     }
     return Response(data)
+
+
+@api_view(['GET'])
+def redeem_reward(request):
+    return Response(status=200)
+
+
+@api_view(['GET'])
+def make_purchase(request):
+    utils.reward_ready_to_redeem = True
+    return Response(status=200)
+
+
+@api_view(['GET'])
+def is_reward_eligible(request):
+    if utils.reward_ready_to_redeem:
+        data = {
+            "response": "true",
+        }
+    else:
+        data = {
+            "response": "false",
+        }
+    return Response(data)
